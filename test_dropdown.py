@@ -21,25 +21,24 @@ def setup_driver():
 
 def test_dropdown():
     driver = setup_driver()
-    try:
-        driver.get("https://the-internet.herokuapp.com/dropdown")
-        
-        dropdown = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "dropdown"))
-        )
-        
-        select = Select(dropdown)
-        
-        select.select_by_visible_text("Option 1")
-        assert select.first_selected_option.text == "Option 1", "Не удалось выбрать Option 1"
-        
-        select.select_by_visible_text("Option 2")
-        assert select.first_selected_option.text == "Option 2", "Не удалось выбрать Option 2"
-        
-        print("Тест пройден")
-        
-    finally:
-        driver.quit()
+    
+    driver.get("https://the-internet.herokuapp.com/dropdown")
+    
+    dropdown = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "dropdown"))
+    )
+    
+    select = Select(dropdown)
+    
+    select.select_by_visible_text("Option 1")
+    assert select.first_selected_option.text == "Option 1", "Не удалось выбрать Option 1"
+    
+    select.select_by_visible_text("Option 2")
+    assert select.first_selected_option.text == "Option 2", "Не удалось выбрать Option 2"
+    
+    print("Тест пройден")
+    
+    driver.quit()
 
 
 if __name__ == "__main__":
